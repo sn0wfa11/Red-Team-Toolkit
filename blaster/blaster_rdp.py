@@ -1,19 +1,27 @@
-#!/usr/bin/python
+#!/usr/bin/env python2
 
 # This is 
 #
 #
 # by sn0wfa11
 
-import sys
-import os
-import socket
-import multiprocessing
-import threading
-import argparse
-import subprocess
-import re
-import time
+try:
+  import sys
+  import os
+  import socket
+  import multiprocessing
+  import threading
+  import argparse
+  import subprocess
+  import re
+  import time
+
+  from lib.common import *
+  from lib.network import *
+except Exception, err:
+  import sys
+  print >> sys.stderr, err
+  sys.exit(1)
 
 usernames = []
 passwords = []
@@ -24,62 +32,6 @@ xfreerdp_path = "/usr/bin/xfreerdp"
 rdp_success = "Authentication only, exit status 0"
 
 global verbose, delay, pairwise
-
-class bcolors:
-  HEADER = '\033[95m'
-  OKBLUE = '\033[94m'
-  GOOD = '\033[92m'
-  WARNING = '\033[93m'
-  ERROR = '\033[91m'
-  ENDC = '\033[0m'
-  BOLD = '\033[1m'
-  UNDERLINE = '\033[4m'
-
-# Printing With Colors Functions
-def print_good(text):
-  print bcolors.GOOD + "[*]" + bcolors.ENDC + " " + text
-
-def print_nomatch(text):
-  print bcolors.ERROR + "[*]" + bcolors.ENDC + " " + text
-
-def print_error(text):
-  print bcolors.ERROR + "\n[*] " + text + bcolors.ENDC + "\n"
-
-def print_status(text):
-  print "[*] " + text
-
-def printv_good(text):
-  if verbose:
-    print bcolors.GOOD + "[*]" + bcolors.ENDC + " " + text
-
-def printv_nomatch(text):
-  if verbose:
-    print bcolors.ERROR + "[*]" + bcolors.ENDC + " " + text
-
-def printv_error(text):
-  if verbose:
-    print bcolors.ERROR + "\n[*] " + text + bcolors.ENDC + "\n"
-
-def printv_status(text):
-  if verbose:
-    print "[*] " + text
-
-# Input File Checking
-def check_file(filename):
-  if os.path.exists(filename) == False:
-    print "\n[*] File " + filename + " Does Not Exist!"
-    sys.exit(4)
-
-# Show parser help and exit
-def help_exit(parser):
-  parser.print_help()
-  sys.exit(1)
-
-# Print a message, show parser help and exit
-def print_exit(message, parser):
-  print_error(message)
-  parser.print_help()
-  sys.exit(1)
 
 # List Import Functions
 def get_usernames(filename):
@@ -113,17 +65,6 @@ def split_host_port(host_input):
       ports.append(3389)
     else:
       ports.append(int(host_port[1]))
-
-# Check if the target port is open on the host
-def port_open(host, port):
-  sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-  sock.settimeout(2)
-  result = sock.connect_ex((host,port))
-  sock.close()
-  if result == 0:
-    return True
-  else:
-    return False
 
 # Get the appropreate number of processes, no need for more than you have hosts
 def process_count():
