@@ -1,11 +1,11 @@
-#!/usr/bin/env python2
+#!/usr/bin/python
+
+import sys
 
 try:
-  import sys
   import argparse
   from lib.common import *
 except Exception, err:
-  import sys
   print >> sys.stderr, err
   sys.exit(1)
 
@@ -24,6 +24,17 @@ def get_templates(filename):
       line = line.strip()
       if line != "":
         templates.append(line)
+
+def make_patterns():
+  numbers.append("1")
+  numbers.append("2")
+
+  for number in numbers:
+    for template in templates:
+      hosts.append(template.replace(pattern, str(number)))
+
+  for host in hosts:
+    print(host)
 
 def parse_args(args, parser):
   global verbose, dns_lookup, pattern
@@ -49,6 +60,7 @@ def main(argv):
     help_exit(parser)
   parse_args(args, parser)
 
+  make_patterns()
 
 if __name__ == "__main__":
   main(sys.argv)
