@@ -5,8 +5,9 @@
 #
 # by sn0wfa11
 
+import sys
+
 try:
-  import sys
   import os
   import socket
   import multiprocessing
@@ -19,7 +20,6 @@ try:
   from lib.common import *
   from lib.network import *
 except Exception, err:
-  import sys
   print >> sys.stderr, err
   sys.exit(1)
 

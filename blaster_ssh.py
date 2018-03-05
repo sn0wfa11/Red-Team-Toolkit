@@ -5,21 +5,20 @@
 #
 # by sn0wfa11
 
+import sys
+
 try:
   import paramiko
-  import sys
   import os
   import multiprocessing
   import threading
   import argparse
   import time
   import subprocess
-  import re
 
   from lib.common import *
   from lib.network import *
 except Exception, err:
-  import sys
   print >> sys.stderr, err
   sys.exit(1)
 

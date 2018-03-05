@@ -5,6 +5,7 @@ import sys
 try:
   import argparse
   from lib.common import *
+  from lib.logging import *
 except Exception, err:
   print >> sys.stderr, err
   sys.exit(1)
@@ -16,6 +17,7 @@ numbers = []
 pattern = "@{N}"
 hosts = []
 ips = []
+passthrough = []
 
 def get_templates(filename):
   check_file(filename)
@@ -23,18 +25,27 @@ def get_templates(filename):
     for line in template_file:
       line = line.strip()
       if line != "":
-        templates.append(line)
+        if pattern in line:
+          templates.append(line)
+        else:
+          passthrough.append(line)
 
 def make_patterns():
-  numbers.append("1")
-  numbers.append("2")
-
   for number in numbers:
     for template in templates:
       hosts.append(template.replace(pattern, str(number)))
 
-  for host in hosts:
-    print(host)
+def make_output():
+  
+
+
+def out_to_file(path):
+  output = []
+
+
+  write_list_to_file(path, hosts)
+
+
 
 def parse_args(args, parser):
   global verbose, dns_lookup, pattern
@@ -60,7 +71,11 @@ def main(argv):
     help_exit(parser)
   parse_args(args, parser)
 
+  numbers.append("1")
+  numbers.append("2")
+
   make_patterns()
+  out_to_file("/root/Desktop/output.txt")
 
 if __name__ == "__main__":
   main(sys.argv)
