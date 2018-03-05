@@ -176,15 +176,15 @@ def parse_args(args, parser):
 
 # Main Function
 def main(argv):
-  parser = argparse.ArgumentParser()
-  parser.add_argument("-u", "--username", type=str, help="Single username to test")
-  parser.add_argument("-U", "--user_file", type=str, help="File containing usernames. One per line.")
-  parser.add_argument("-p", "--password", type=str, help="Single password to test")
-  parser.add_argument("-P", "--pass_file", type=str, help="File containing passwords. One per line.")
-  parser.add_argument("-t", "--host", type=str, help="Single host to test. <host> or <host>:<port> IPv6 is ok too.")
-  parser.add_argument("-T", "--host_file", type=str, help="File containing hosts. One per line. <host> or <host>:<port> IPv6 is ok too.")
-  parser.add_argument("-v", "--verbose", action="store_true", help="Display all host:username:password tests.")
-  parser.add_argument("-w", "--pairwise", action="store_true", help="Test username and password combos in line by line match. Must have same number of each!")
+  parser = argparse.ArgumentParser(description = "RDP login brute forcer.")
+  parser.add_argument("-u", "--username", type = str, help = "Single username to test")
+  parser.add_argument("-U", "--user_file", type = str, help = "File containing usernames. One per line.")
+  parser.add_argument("-p", "--password", type = str, help = "Single password to test")
+  parser.add_argument("-P", "--pass_file", type = str, help = "File containing passwords. One per line.")
+  parser.add_argument("-t", "--host", type = str, help = "Single host to test. <host> or <host>:<port> IPv6 is ok too.")
+  parser.add_argument("-T", "--host_file", type = str, help = "File containing hosts. One per line. <host> or <host>:<port> IPv6 is ok too.")
+  parser.add_argument("-v", "--verbose", action = "store_true", help = "Display all host:username:password tests.")
+  parser.add_argument("-w", "--pairwise", action = "store_true", help = "Test username and password combos in line by line match. Must have same number of each!")
   
   args = parser.parse_args()
   if len(argv) == 1:
