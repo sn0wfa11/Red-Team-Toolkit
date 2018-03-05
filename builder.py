@@ -31,15 +31,18 @@ def parse_args(args, parser):
   verbose = args.verbose
   dns_lookup = args.dns_lookup
 
+  if args.template:
+    templates.append(args.template)
   if args.template_file:
     get_templates(args.template_file)
 
 def main(argv):
   parser = argparse.ArgumentParser(description = "Create a list of host names from CDC host templates.")
   parser.add_argument("-T", "--template_file", type = str, help = "File containing host name templates. One per line.")
+  parser.add_argument("-t", "--template", type = str, help = "Template to parse")
   parser.add_argument("-v", "--verbose", action = "store_true", help = "Verbose Reporting")
   parser.add_argument("-d", "--dns_lookup", action = "store_true", help = "Perform a DNS lookup and store IP address for each host.")
-  parser.add_argument("range", type = str, 
+  parser.add_argument("-r", "--range", type = str, help = "Ranges of team numbers. Example 1,3,5-10,12")
   
   args = parser.parse_args()
   if len(argv) == 1:
