@@ -36,11 +36,15 @@ def make_patterns():
       hosts.append(template.replace(pattern, str(number)))
 
 def make_output():
-  
+  output = []
+
+  for number in numbers:
+    for host in hosts;
+      if number in host
 
 
 def out_to_file(path):
-  output = []
+
 
 
   write_list_to_file(path, hosts)
