@@ -86,7 +86,7 @@ def rdp_connect(host, port, username, password):
   if match:
     print_good("Login found on " + host + " -> " + username + ":" + password)
   else:
-    printv_nomatch(username + ":" + password + " no match on " + host)
+    printv_nomatch(username + ":" + password + " no match on " + host, verbose)
   pass
 
 # Username and password checking

@@ -163,6 +163,8 @@ def ssh_connect(host, port, username, password, code = 0):
     code = 1
   except socket.error, e:
     code = 2
+  except:
+    code = 3
   
   if code == 0:
     if username == "root":
@@ -188,6 +190,10 @@ def ssh_connect(host, port, username, password, code = 0):
     printv_nomatch(username + ":" + password + " no match on " + host, verbose)
   elif code == 2:
     printv_nomatch("Connection Could Not Be Established For: " + host + " You might be blocked now...", verbose)
+  elif code == 3:
+    printv_nomatch("Unable to connect to: " + host + ":" + str(port), verbose)
+    pass
+
   ssh.close()
   pass
 
@@ -195,7 +201,7 @@ def ssh_connect(host, port, username, password, code = 0):
 # Spawns a thread for each combination based on pairwise or not
 def check_up(host, port, host_event, host_last):
   if not port_open(host, port):
-    print_nomatch("Unable to connect to: " + host + ":" + str(port))
+    printv_nomatch("Unable to connect to: " + host + ":" + str(port), verbose)
   else:
     up_threads = []
     errored = False
