@@ -11,3 +11,9 @@ def port_open(host, port):
   else:
     return False
 
+def nslookup(host):
+  try:
+    ip = socket.gethostbyname(host)
+  except:
+    return ""
+  return ip
