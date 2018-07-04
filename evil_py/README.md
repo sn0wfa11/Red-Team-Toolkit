@@ -14,7 +14,7 @@ python -m pip install --user --upgrade setuptools wheel
   - **Note: This will pop a shell on you build computer! Great way to test the package**
   - This will throw errors, but don't worry about it.
 ```
-python3 setup.py sdist bdist_wheel
+python setup.py sdist bdist_wheel
 ```
 - Grab the .tar.gz file out of the /dist folder and place this on your target
 - Run `pip install evil_py-<version>.tar.gz`
