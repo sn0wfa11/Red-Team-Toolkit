@@ -73,9 +73,9 @@ def parse_args(args, parser):
     numbers = build_range(args.range)
   
 def main(argv):
-  parser = argparse.ArgumentParser(description = "Create a list of host names from CDC host templates.")
+  parser = argparse.ArgumentParser(description = "Create a list of host names from CDC host templates.  The pattern to be replaced is \"@{N}\".  Example: www.team@{N}.isucdc.com")
   parser.add_argument("-T", "--template_file", type = str, help = "File containing host name templates. One per line.")
-  parser.add_argument("-t", "--template", type = str, help = "Template to parse")
+  parser.add_argument("-t", "--template", type = str, help = "Single template to parse")
   parser.add_argument("-v", "--verbose", action = "store_true", help = "Verbose Reporting")
   parser.add_argument("-d", "--dns_lookup", action = "store_true", help = "Perform a DNS lookup and store IP address for each host.")
   parser.add_argument("-r", "--range", type = str, help = "Ranges of team numbers. Example 1,3,5-10,12")
