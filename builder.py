@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import sys
 
@@ -6,7 +6,7 @@ try:
   import argparse
   from lib.common import *
   from lib.logging import *
-except Exception, err:
+except Exception as err:
   print >> sys.stderr, err
   sys.exit(1)
 
@@ -91,7 +91,7 @@ def main(argv):
     write_list_to_file(args.output_file, hosts)
   else:
     for line in hosts:
-      print line
+      print(line)
 
 if __name__ == "__main__":
   main(sys.argv)

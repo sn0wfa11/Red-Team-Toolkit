@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/python3
 
 # This is 
 #
@@ -19,7 +19,7 @@ try:
 
   from lib.common import *
   from lib.network import *
-except Exception, err:
+except Exception as err:
   print >> sys.stderr, err
   sys.exit(1)
 
@@ -205,5 +205,5 @@ if __name__ == "__main__":
   try:
     main(sys.argv)
   except KeyboardInterrupt:
-    print "\n\n[*] Exiting..."
+    print("\n\n[*] Exiting...")
     sys.exit(3)

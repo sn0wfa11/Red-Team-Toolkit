@@ -14,37 +14,37 @@ class bcolors:
 
 # Printing With Colors Functions
 def print_good(text):
-  print bcolors.GOOD + "[*]" + bcolors.ENDC + " " + text
+  print(bcolors.GOOD + "[*]" + bcolors.ENDC + " " + text)
 
 def print_nomatch(text):
-  print bcolors.ERROR + "[*]" + bcolors.ENDC + " " + text
+  print(bcolors.ERROR + "[*]" + bcolors.ENDC + " " + text)
 
 def print_error(text):
-  print bcolors.ERROR + "\n[*] " + text + bcolors.ENDC + "\n"
+  print(bcolors.ERROR + "\n[*] " + text + bcolors.ENDC + "\n")
 
 def print_status(text):
-  print "[*] " + text
+  print("[*] " + text)
 
 def printv_good(text, verbose):
   if verbose:
-    print bcolors.GOOD + "[*]" + bcolors.ENDC + " " + text
+    print(bcolors.GOOD + "[*]" + bcolors.ENDC + " " + text)
 
 def printv_nomatch(text, verbose):
   if verbose:
-    print bcolors.ERROR + "[*]" + bcolors.ENDC + " " + text
+    print(bcolors.ERROR + "[*]" + bcolors.ENDC + " " + text)
 
 def printv_error(text, verbose):
   if verbose:
-    print bcolors.ERROR + "\n[*] " + text + bcolors.ENDC + "\n"
+    print(bcolors.ERROR + "\n[*] " + text + bcolors.ENDC + "\n")
 
 def printv_status(text, verbose):
   if verbose:
-    print "[*] " + text
+    print("[*] " + text)
 
 # Input File Checking
 def check_file(filename):
   if os.path.exists(filename) == False:
-    print "\n[*] File " + filename + " Does Not Exist!"
+    print("\n[*] File " + filename + " Does Not Exist!")
     sys.exit(4)
 
 # Show parser help and exit

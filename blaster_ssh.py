@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/python3
 
 # This is 
 #
@@ -18,7 +18,7 @@ try:
 
   from lib.common import *
   from lib.network import *
-except Exception, err:
+except Exception as err:
   print >> sys.stderr, err
   sys.exit(1)
 
@@ -115,7 +115,7 @@ def run_ssh_commands(ssh, host, username):
     
     if output != "":
       output = "[*] Ouput from commands on " + host + " as " + username + "\n" + output
-      print output
+      print(output)
 
 # Check for Sudo rights
 def sudo_test(ssh, username, password):
@@ -150,7 +150,7 @@ def sudo_run_commands(ssh, host, username, password):
     
     if output != "":
       output = "[*] Ouput from sudo commands on " + host + " as " + username + "\n" + output
-      print output
+      print(output)
 
 # Test a single ssh login option
 def ssh_connect(host, port, username, password, code = 0):
@@ -161,7 +161,7 @@ def ssh_connect(host, port, username, password, code = 0):
     ssh.connect(host, port, username=username, password=password)
   except paramiko.AuthenticationException:
     code = 1
-  except socket.error, e:
+  except socket.error as e:
     code = 2
   except:
     code = 3
@@ -332,5 +332,5 @@ if __name__ == "__main__":
   try:
     main(sys.argv)
   except KeyboardInterrupt:
-    print "\n\n[*] Exiting..."
+    print("\n\n[*] Exiting...")
     sys.exit(3)
